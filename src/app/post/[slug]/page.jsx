@@ -2,12 +2,65 @@ import CallToAction from '@/app/components/CallToAction';
 import RecentPosts from '@/app/components/RecentPosts';
 import { Button } from 'flowbite-react';
 import Link from 'next/link';
+
+// export async function generateStaticParams() {
+//   let post = null;
+//   try {
+//     const result = await fetch(process.env.URL + '/api/post/get', {
+//       method: 'POST',
+//       body: JSON.stringify({ retrieve: "all" }),
+//       cache: 'no-store',
+//     });
+//     // return JSON.stringify([
+//     //   { slug: 'seo-post' },
+//     //   { slug: 'post-3' },
+//     //   { slug: 'post-2' },
+//     //   { slug: 'new-post' }
+//     // ])
+//     const data = await result.json();
+//     return data.posts.map((post) => ({
+//       slug: post.slug,
+//     }))
+//   } catch (error) {
+//     post = { title: 'Failed to load post' };
+//   }
+// }
+export async function generateMetadata({ params }) {
+  let post = null;
+  try {
+    const {slug} = await params;
+    const result = await fetch(process.env.URL + '/api/post/get', {
+      method: 'POST',
+      body: JSON.stringify({ slug }),
+      cache: 'no-store',
+    });
+    const data = await result.json();
+    post = data.posts[0];
+  } catch (error) {
+    post = { title: 'Failed to load post' };
+  }
+  // console.log(post)
+  return {
+    title: post.title,
+    description: post.metaDescription,
+    openGraph: {
+      images: [
+        {
+          url: post.image,
+          // alt: post.title
+        }
+      ]
+    },
+    keywords: post.keywords ? [...post.keywords] : null,
+  }
+}
 export default async function PostPage({ params }) {
   let post = null;
   try {
+    const {slug} = await params;
     const result = await fetch(process.env.URL + '/api/post/get', {
       method: 'POST',
-      body: JSON.stringify({ slug: params.slug }),
+      body: JSON.stringify({ slug }),
       cache: 'no-store',
     });
     const data = await result.json();

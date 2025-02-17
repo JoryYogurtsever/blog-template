@@ -1,7 +1,7 @@
 "use client";
 import Image from 'next/image'
 import {useUser} from '@clerk/nextjs'
-import { Alert, Button, FileInput, Select, TextInput } from 'flowbite-react';
+import { Alert, Button, FileInput, Select, TextInput, Badge, Textarea } from 'flowbite-react';
 
 
 import dynamic from 'next/dynamic';
@@ -28,12 +28,12 @@ export default function CreatePostPage() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({metaDescriptionLength: 0});
   const [publishError, setPublishError] = useState(null);
   const router = useRouter();
   console.log(formData);
 
-  const handleUpdloadImage = async () => {
+  const handleUpdloadImage = async (type) => {
     try {
       if (!file) {
         setImageUploadError('Please select an image');
@@ -59,7 +59,7 @@ export default function CreatePostPage() {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setImageUploadProgress(null);
             setImageUploadError(null);
-            setFormData({ ...formData, image: downloadURL });
+            type === "OG" ? setFormData({ ...formData, OGImage: downloadURL }) : setFormData({ ...formData, image: downloadURL });
           });
         }
       );
@@ -129,6 +129,40 @@ export default function CreatePostPage() {
             <option value='reactjs'>React.js</option>
             <option value='nextjs'>Next.js</option>
           </Select>
+        </div>
+        <div className="max-w-md">
+          <Textarea id="keywords" placeholder="Keywords, Comma Seperated" required rows={4} 
+            onChange={(e) => 
+              setFormData({ ...formData, keywords: [...e.target.value.split(',')] })
+            }
+          />
+        <div className="flex flex-wrap gap-2 my-4">
+            {formData.keywords && formData.keywords.map((keyword, index) => {
+              if (keyword !== keyword.trim()) {
+                let formatted_keywords = formData.keywords
+                formatted_keywords[index] = keyword.trim();
+                setFormData(
+                  { ...formData, keywords: formatted_keywords }
+                )
+              }
+              return (
+                <Badge color="indigo" size="sm">
+                  {keyword}
+                </Badge>
+              )
+            })}
+          </div>
+        </div>
+        <div className="max-w-md">
+          <Textarea id="keywords" placeholder="Meta Description, try to incorporate keyword and entice users to click link" required rows={4} 
+            onChange={(e) => 
+              setFormData({ ...formData, metaDescription: e.target.value, metaDescriptionLength: e.target.value.split("").length })
+            }
+          />
+        <div className="flex flex-wrap gap-2 my-4">
+          <span className={formData.metaDescriptionLength > 160 || formData.metaDescriptionLength < 50 ? 'text-red-500' : 'text-green-500'}>Characters = {formData.metaDescriptionLength}<br/> 
+          {formData.metaDescriptionLength < 50 && "Meta Description too short"}{formData.metaDescriptionLength > 160 && "Meta Description Too Long"}</span> 
+        </div>
         </div>
         <div className='flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3'>
           <FileInput
