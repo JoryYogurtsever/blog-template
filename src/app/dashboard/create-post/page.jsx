@@ -19,8 +19,8 @@ import {
 } from 'firebase/storage';
 import { app } from '@/firebase';
 
-import { CircularProgressbar } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
+// import { CircularProgressbar } from 'react-circular-progressbar';
+// import 'react-circular-progressbar/dist/styles.css';
 
 export default function CreatePostPage() {
   const {isSignedIn, user, isLoaded} = useUser();
@@ -180,10 +180,10 @@ export default function CreatePostPage() {
           >
             {imageUploadProgress ? (
               <div className='w-16 h-16'>
-                <CircularProgressbar
+                {/* <CircularProgressbar
                   value={imageUploadProgress}
                   text={`${imageUploadProgress || 0}%`}
-                />
+                /> */}
               </div>
             ) : (
               'Upload Image'

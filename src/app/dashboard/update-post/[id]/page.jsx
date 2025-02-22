@@ -15,8 +15,8 @@ import {
 } from 'firebase/storage';
 import { app } from '../../../../firebase';
 import { useEffect, useState } from 'react';
-import { CircularProgressbar } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
+// import { CircularProgressbar } from 'react-circular-progressbar';
+// import 'react-circular-progressbar/dist/styles.css';
 import { useRouter, usePathname } from 'next/navigation';
 
 export default function UpdatePost() {
@@ -174,10 +174,10 @@ export default function UpdatePost() {
             >
               {imageUploadProgress ? (
                 <div className='w-16 h-16'>
-                  <CircularProgressbar
+                  {/* <CircularProgressbar
                     value={imageUploadProgress}
                     text={`${imageUploadProgress || 0}%`}
-                  />
+                  /> */}
                 </div>
               ) : (
                 'Upload Image'
