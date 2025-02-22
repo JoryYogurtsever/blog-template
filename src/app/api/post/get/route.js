@@ -42,6 +42,7 @@ export const POST = async (req) => {
 
     return new Response(JSON.stringify({ posts, totalPosts, lastMonthPosts }), {
       status: 200,
+      fallback: false,
     });
   } catch (error) {
     console.log('Error getting posts:', error);
