@@ -40,6 +40,11 @@ export default function RootLayout({ children }) {
       <html lang="en" suppressHydrationWarning>
       <head>
         <ThemeModeScript/>
+        <script
+          defer
+          src={process.env.UMAMI_CODE_SOURCE}
+          data-website-id={process.env.UMAMI_WEBSITE_ID}
+        ></script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
