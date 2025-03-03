@@ -15,20 +15,6 @@ export async function generateStaticParams() {
         slug: post.slug,
       }))
     return slugs
-    // const result = await fetch(process.env.URL + '/api/post/get', {
-    //   method: 'POST',
-    //   body: JSON.stringify({ limit: 9, order: 'desc' }),
-    // }).then((res) => res.json())
-    // return ([
-    //   { slug: 'seo-post' },
-    //   { slug: 'post-3' },
-    //   { slug: 'post-2' },
-    //   { slug: 'new-post' }
-    // ])
-    // const data = await result.json();
-    // return data.posts.map((post) => ({
-    //   slug: post.slug,
-    // }))
   } catch (error) {
     slugs = { title: 'Failed to load post' };
   }
@@ -40,7 +26,6 @@ export async function generateMetadata({ params }) {
     const result = await fetch(process.env.URL + '/api/post/get', {
       method: 'POST',
       body: JSON.stringify({ slug }),
-      // cache: 'no-store',
     });
     const data = await result.json();
     post = data.posts[0];
@@ -48,7 +33,6 @@ export async function generateMetadata({ params }) {
   } catch (error) {
     post = { title: 'Failed to load post' };
   }
-  // console.log(post)
   return {
     title: post.title,
     description: post.metaDescription,
@@ -70,7 +54,6 @@ export default async function PostPage({ params }) {
     const result = await fetch(process.env.URL + '/api/post/get', {
       method: 'POST',
       body: JSON.stringify({ slug }),
-      // cache: 'no-store',
     });
     const data = await result.json();
     post = data.posts[0];

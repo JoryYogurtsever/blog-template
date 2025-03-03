@@ -1,7 +1,7 @@
 'use client';
 
 import { useUser } from '@clerk/nextjs';
-import { Alert, Button, FileInput, Select, TextInput } from 'flowbite-react';
+import { Alert, Button, FileInput, Select, TextInput, Spinner } from 'flowbite-react';
 import dynamic from 'next/dynamic';
 const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false });
 // https://dev.to/a7u/reactquill-with-nextjs-478b
@@ -15,8 +15,6 @@ import {
 } from 'firebase/storage';
 import { app } from '../../../../firebase';
 import { useEffect, useState } from 'react';
-// import { CircularProgressbar } from 'react-circular-progressbar';
-// import 'react-circular-progressbar/dist/styles.css';
 import { useRouter, usePathname } from 'next/navigation';
 
 export default function UpdatePost() {
@@ -174,10 +172,10 @@ export default function UpdatePost() {
             >
               {imageUploadProgress ? (
                 <div className='w-16 h-16'>
-                  {/* <CircularProgressbar
-                    value={imageUploadProgress}
-                    text={`${imageUploadProgress || 0}%`}
-                  /> */}
+                  <Spinner aria-label="Large spinner example" size="lg" />
+                  <p>
+                  {`${imageUploadProgress || 0}%`}
+                  </p>
                 </div>
               ) : (
                 'Upload Image'

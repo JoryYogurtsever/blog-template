@@ -1,4 +1,4 @@
-import { MetadataRoute } from "next";
+// import { MetadataRoute } from "next";
 import Post from '../lib/models/post.model.js';
 import { connect } from '../lib/mongodb/mongoose.js';
 export default async function sitemap() {

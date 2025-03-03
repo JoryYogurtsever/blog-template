@@ -1,11 +1,27 @@
 import PostCard from './PostCard';
+
+export async function generateStaticParams({limit}) {
+  let posts = null;
+  try {
+    const result = await fetch(process.env.URL + '/api/post/get', {
+      method: 'POST',
+      body: JSON.stringify({ limit: limit, order: 'desc' }),
+    });
+    const data = await result.json();
+    posts = data.posts;
+  } catch (error) {
+    posts = { title: 'Failed to load post' };
+  }
+  return posts
+}
+
 export default async function RecentPosts({limit}) {
   let posts = null;
   try {
     const result = await fetch(process.env.URL + '/api/post/get', {
       method: 'POST',
       body: JSON.stringify({ limit: limit, order: 'desc' }),
-      cache: 'no-store',
+      // cache: 'no-store',
     });
     const data = await result.json();
     posts = data.posts;

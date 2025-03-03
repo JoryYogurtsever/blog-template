@@ -1,7 +1,7 @@
 "use client";
 import Image from 'next/image'
 import {useUser} from '@clerk/nextjs'
-import { Alert, Button, FileInput, Select, TextInput, Badge, Textarea } from 'flowbite-react';
+import { Alert, Button, FileInput, Select, TextInput, Badge, Textarea, Spinner } from 'flowbite-react';
 
 
 import dynamic from 'next/dynamic';
@@ -180,10 +180,10 @@ export default function CreatePostPage() {
           >
             {imageUploadProgress ? (
               <div className='w-16 h-16'>
-                {/* <CircularProgressbar
-                  value={imageUploadProgress}
-                  text={`${imageUploadProgress || 0}%`}
-                /> */}
+                <Spinner aria-label="Large spinner example" size="lg" />
+                <p>
+                {`${imageUploadProgress || 0}%`}
+                </p>
               </div>
             ) : (
               'Upload Image'
@@ -209,6 +209,21 @@ export default function CreatePostPage() {
           required
           onChange={(value) => {
             setFormData({ ...formData, content: value });
+          }}
+          modules={{
+            toolbar: [
+              [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
+              [{size: []}],
+              ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+              [{'list': 'ordered'}, {'list': 'bullet'}, 
+               {'indent': '-1'}, {'indent': '+1'}],
+              ['link', 'image', 'video','formula'],
+              ['clean']
+            ],
+            clipboard: {
+              // toggle to add extra line breaks when pasting HTML:
+              matchVisual: false,
+            }
           }}
         />
         <Button type='submit' gradientDuoTone='purpleToPink'>
