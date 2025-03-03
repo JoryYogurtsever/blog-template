@@ -29,6 +29,7 @@ export const POST = async (req) => {
       category: data.category,
       slug,
       keywords: data.keywords,
+      metaDescription: data.metaDescription,
     });
     await newPost.save();
     return new Response(JSON.stringify(newPost), {

@@ -26,6 +26,8 @@ export const PUT = async (req) => {
           content: data.content,
           category: data.category,
           image: data.image,
+          keywords: data.keywords,
+          metaDescription: data.metaDescription,
         },
       },
       { new: true }

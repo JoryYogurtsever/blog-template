@@ -56,14 +56,14 @@ export default function CallToAction() {
   }
 
   return (
-    <div className="flex flex-col sm:flex-row p-3 border border-teal-500 justify-center items-center rounded-tl-3xl rounded-br-3xl text-center">
-      <h2>
-        Sign up for the Newsletter to stay up to date on new posts and discounts
-        and deals on your favorite products
+    <div className="p-3 border border-teal-500 justify-center items-center rounded-tl-3xl rounded-br-3xl text-center">
+      <h2 className="text-xl font-medium text-gray-900 dark:text-white">
+        Sign up for the Newsletter
       </h2>
+      <p>If you don't sign up for the newsletter you will regret it. Sign up for our really really good newsletter</p>
       <Button
         gradientDuoTone="purpleToPink"
-        className="rounded-tl-xl rounded-bl-none"
+        className="rounded-tl-xl rounded-bl-none m-auto my-5"
         onClick={() => setOpenModal(true)}
       >
         Join The Newsletter
