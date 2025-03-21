@@ -15,22 +15,28 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+(npm run start will run on 3001 because I have several projects on my server)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+You will need to create a file named ".env.local" it should contain the following parameters
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=
+# NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+CLERK_SIGNING_SECRET=
+MONGODB_URI=
+FIREBASE_API=
+URL=
+# URL can be set to localhost in the development environment and the live url in production
+# NEXT_PUBLIC_BASE_URL should be the production url. It is used for sitemap generation
+NEXT_PUBLIC_BASE_URL=
+UMAMI_CODE_SOURCE=
+UMAMI_WEBSITE_ID=
+MAILERLITE_API=
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+You will need to create accounts in:
+1) Clerk: For admin user management, so your team can create posts
+2) mongodb: The database used for this project
+3) Firebase: For image storage and serving
+4) Umami: For site analytics
+5) Mailerlite: Autoresponder used for collecting adresses and sending emails.

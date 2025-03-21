@@ -36,6 +36,7 @@ export default function UpdatePost() {
   const router = useRouter();
   const pathname = usePathname();
   const postId = pathname.split("/").pop();
+
   useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -270,6 +271,21 @@ export default function UpdatePost() {
             value={formData.content}
             onChange={(value) => {
               setFormData({ ...formData, content: value });
+            }}
+            modules={{
+              toolbar: [
+                [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
+                [{size: []}],
+                ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                [{'list': 'ordered'}, {'list': 'bullet'}, 
+                 {'indent': '-1'}, {'indent': '+1'}],
+                ['link', 'image', 'video','formula'],
+                ['clean']
+              ],
+              clipboard: {
+                // toggle to add extra line breaks when pasting HTML:
+                matchVisual: false,
+              }
             }}
           />
           <Button type="submit" gradientDuoTone="purpleToPink">

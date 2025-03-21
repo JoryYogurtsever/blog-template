@@ -31,7 +31,6 @@ export default function CreatePostPage() {
   const [formData, setFormData] = useState({metaDescriptionLength: 0});
   const [publishError, setPublishError] = useState(null);
   const router = useRouter();
-  console.log(formData);
 
   const handleUpdloadImage = async (type) => {
     try {
