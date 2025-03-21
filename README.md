@@ -28,7 +28,7 @@ You will need to create a file named ".env.local" it should contain the followin
  FIREBASE_API=
  URL= </code><br>
 "URL can be set to localhost in the development environment and the live url in production"<br>
-"NEXT_PUBLIC_BASE_URL should be the production url. It is used for sitemap generation"
+"NEXT_PUBLIC_BASE_URL should be the production url. It is used for sitemap generation"<br>
 <code> NEXT_PUBLIC_BASE_URL=
  UMAMI_CODE_SOURCE=
  UMAMI_WEBSITE_ID=
