@@ -20,19 +20,19 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 # Environment Variables
 You will need to create a file named ".env.local" it should contain the following parameters
 
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
-CLERK_SECRET_KEY=
-NEXT_PUBLIC_CLERK_SIGN_IN_URL=
-CLERK_SIGNING_SECRET=
-MONGODB_URI=
-FIREBASE_API=
-URL=
+<code> NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY= </code>
+<code> CLERK_SECRET_KEY= </code>
+<code> NEXT_PUBLIC_CLERK_SIGN_IN_URL= </code>
+<code> CLERK_SIGNING_SECRET= </code>
+<code> MONGODB_URI= </code>
+<code> FIREBASE_API= </code>
+<code> URL= </code>
 "URL can be set to localhost in the development environment and the live url in production"
 "NEXT_PUBLIC_BASE_URL should be the production url. It is used for sitemap generation"
-NEXT_PUBLIC_BASE_URL=
-UMAMI_CODE_SOURCE=
-UMAMI_WEBSITE_ID=
-MAILERLITE_API=
+<code> NEXT_PUBLIC_BASE_URL= </code>
+<code> UMAMI_CODE_SOURCE= </code>
+<code> UMAMI_WEBSITE_ID= </code>
+<code> MAILERLITE_API= </code>
 
 You will need to create accounts in:
 1) Clerk: For admin user management, so your team can create posts
